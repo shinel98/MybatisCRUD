@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.clone.burgerking.Service.MenuService;
 import com.clone.burgerkingDAO.MenuDAO;
 import com.clone.burgerkingVO.MenuVO;
 
@@ -27,10 +28,11 @@ import com.clone.burgerkingVO.MenuVO;
 public class MenuController {
 	
 	@Autowired
-	MenuDAO dao;
+	MenuService menuService;
+	
 	@RequestMapping(value = "/")
 	public String home(Model model) {
-		List<MenuVO> list = dao.getMenus();
+		List<MenuVO> list = menuService.getMenus();
 		model.addAttribute("list", list);
 		
 		return "addHome";
@@ -75,19 +77,19 @@ public class MenuController {
 		System.out.println(menu.getPhoto());
 		System.out.println(menu.getName());
 		System.out.println(menu.getDes());
-		dao.create(menu);
+		menuService.insertMenu(menu);
 		return "redirect:/viewMenu";    
 	}
 	@RequestMapping(value="/viewMenu")
 	public String viewMenu(Model model) {
-		List<MenuVO> list = dao.getMenus();
+		List<MenuVO> list = menuService.getMenus();
 		model.addAttribute("list", list);
 		return "addHome";
 	}
 	@RequestMapping(value="/editMenu/{id}")
 	public String editMenu(@PathVariable int id, Model model) {
 		
-		MenuVO menu = dao.getMenuById(id);
+		MenuVO menu = menuService.getMenuById(id);
 		//System.out.println(menu.getId());
 		model.addAttribute("id", menu.getId());
 		return "menuEditForm";
@@ -100,12 +102,12 @@ public class MenuController {
 		System.out.println(menu.getPhoto());
 		System.out.println(menu.getName());
 		System.out.println(menu.getDes());
-		dao.update(menu);
+		menuService.updateMenu(menu);
 		return "redirect:/viewMenu";
 	}
 	@RequestMapping(value="/deleteMenu/{id}", method=RequestMethod.GET)
 	public String deleteMenu(@PathVariable int id) {
-		dao.delete(id);
+		menuService.deleteMenu(id);
 		return "redirect:/viewMenu";
 	}
 }
