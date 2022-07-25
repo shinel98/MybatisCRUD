@@ -81,30 +81,36 @@
 					</div>
 
 				</div>
-
-				<a href="viewMenu">View Menu</a>
-				<table border="2" width="70%" cellpadding="2">
-					<tr>
-						<th>Id</th>
-						<th>Type</th>
-						<th>Photo</th>
-						<th>Name</th>
-						<th>Description</th>
-						<th>Delete</th>
-					</tr>
-					<c:forEach var="menu" items="${list}">
-						<tr>
-							<td>${menu.id}</td>
-							<td>${menu.type}</td>
+				<div class="list">
+					<ul class="content_list">
+						<c:forEach var="menu" items="${list}">
+						<li>
+							<div class="img"><span><img src="../../resources/img/texas_chilli1.png"/></span></div>
+							<div class="cont">${menu.name}</div>
+							<div class="button">
+							<a class="modi" href="editMenu/${menu.id}">수정</a>
+							<a class="delete" href="deleteMenu/${menu.id}">삭제</a>
+							</div>
+							<a href="#"></a>
+							
+						</li>
+						</c:forEach>
+					</ul>
+				</div>
+					
+					<%-- 	<tr rowspan="3">
 							<td>${menu.photo}</td>
+						</tr>
+						<tr>
 							<td>${menu.name}</td>
-							<td>${menu.des}</td>
+						</tr>
+						<tr colspan="2">
 							<td><a href="editMenu/${menu.id}">Edit</a></td>
 							<td><a href="deleteMenu/${menu.id}">Delete</a></td>
-						</tr>
-					</c:forEach>
-				</table>
-				<br />
+						</tr> --%>
+					
+				
+				
 			</div>
 		</div>
 		<div class="footer"></div>

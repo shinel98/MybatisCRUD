@@ -17,12 +17,12 @@ public class MenuDAO {
 		this.template = template;
 	}
 	public int create(MenuVO menu) {
-	    String sql="insert into lih_menu(type,photo,name,des) values("+menu.getType()+",'"+menu.getPhoto()+"','"+menu.getName()+"','"+menu.getDes()+"');";    
+	    String sql="insert into lih_menu(type,photo,name,des) values('"+menu.getType()+"','"+menu.getPhoto()+"','"+menu.getName()+"','"+menu.getDes()+"');";    
 		
 		return template.update(sql);
 	}
 	public int update(MenuVO menu) {
-		String sql = "update lih_menu set type="+menu.getType()+", photo='"+ menu.getPhoto()+"', name='" + menu.getName() +"', des='" + menu.getDes()+"' where id="+menu.getId()+";";
+		String sql = "update lih_menu set type='"+menu.getType()+"', photo='"+ menu.getPhoto()+"', name='" + menu.getName() +"', des='" + menu.getDes()+"' where id="+menu.getId()+";";
 		return template.update(sql);
 	}
 	public int delete(int id) {
@@ -39,10 +39,10 @@ public class MenuDAO {
 	        public MenuVO mapRow(ResultSet rs, int row) throws SQLException {    
 	            MenuVO menu =new MenuVO();
 	            menu.setId(rs.getInt(1));
-	            menu.setType(rs.getInt(2));    
+	            menu.setType(rs.getString(2));    
 	            menu.setPhoto(rs.getString(3));    
 	            menu.setName(rs.getString(4));    
-	            menu.setDes(rs.getString(5));    
+	            menu.setDes(rs.getString(5));   
 	            return menu;    
 	        }    
 	    });    

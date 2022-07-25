@@ -13,7 +13,7 @@
   
 <h1>Employees List</h1>  
 <table border="2" width="70%" cellpadding="2">  
-<tr><th>Id</th><th>Type</th><th>Photo</th><th>Name</th><th>Description</th><th>Delete</th></tr>  
+<tr><th>Id</th><th>Type</th><th>Photo</th><th>Name</th><th>Description</th><th>Edit</th><th>Delete</th></tr>  
    <c:forEach var="menu" items="${list}">   
 	   <tr>  
 		   <td>${menu.id}</td>
